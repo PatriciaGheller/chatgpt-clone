@@ -1,5 +1,4 @@
 // src/config/openai.js
-
 const OpenAI = require("openai");
 
 class OpenAIClient {
