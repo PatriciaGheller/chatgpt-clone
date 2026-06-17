@@ -5,7 +5,7 @@ require("dotenv").config()
 
 const app = express()
 
-app.use(express.jason())
+app.use(express.json())
 app.use(cors())
 
 module.exports = app
