@@ -1,24 +1,20 @@
-const inputPrompt = require("../models/input-prompt");
-const openai = require("../config/openai");
+const InputPrompt = require("../models/input-prompt");
+const OpenAIClient = require("../config/openai");
 
 module.exports = {
   async sendText(req, res) {
-    const openaiAPI = openai.configuration();
-    const inputModel = new inputPrompt(req.body);
+    const inputModel = new InputPrompt(req.body);
     try {
-      const reponse = await openaiAPI.createCompletion(
-        openai.textCompletion(inputModel),
-      );
+      // usa o método atualizado que retorna o texto da resposta
+      const text = await OpenAIClient.chatCompletion({ prompt: inputModel.prompt });
       return res.status(200).json({
-        sucess: true,
-        data: response.data.choices[0].text,
+        success: true,
+        data: text,
       });
     } catch (error) {
       return res.status(400).json({
-        sucess: false,
-        error: error.response
-          ? error.response
-          : "there was an inssue on the server",
+        success: false,
+        error: error.response ? error.response.data : error.message,
       });
     }
   },
