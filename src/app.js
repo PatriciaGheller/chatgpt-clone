@@ -1,15 +1,15 @@
-const express = require("express")
-const cors = require("cors")
+const express = require("express");
+const cors = require("cors");
 
 // carregar variáveis de ambiente antes de importar módulos que dependem delas
-require("dotenv").config()
+require("dotenv").config();
 
-const routes = require("./routes/routes")
+const routes = require("./routes/routes");
 
-const app = express()
+const app = express();
 
-app.use(express.json())
-app.use(cors())
-app.use(routes)
+app.use(express.json());
+app.use(cors());
+app.use(routes);
 
-module.exports = app
+module.exports = app;
