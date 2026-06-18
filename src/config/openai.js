@@ -2,7 +2,10 @@
 const OpenAI = require("openai");
 
 // suporta duas variações de nome de variável de ambiente e remove aspas se houver
-const rawKey = process.env.OPENAI_API_KEY || process.env.OPEN_AI_KEY || process.env.OPENAI_KEY;
+const rawKey =
+  process.env.OPENAI_API_KEY ||
+  process.env.OPEN_AI_KEY ||
+  process.env.OPENAI_KEY;
 const apiKey = rawKey ? rawKey.replace(/^"|"$/g, "") : undefined;
 
 class OpenAIClient {
