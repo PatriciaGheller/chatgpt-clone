@@ -1,15 +1,19 @@
 // src/config/openai.js
 const OpenAI = require("openai");
 
+// suporta duas variações de nome de variável de ambiente e remove aspas se houver
+const rawKey = process.env.OPENAI_API_KEY || process.env.OPEN_AI_KEY || process.env.OPENAI_KEY;
+const apiKey = rawKey ? rawKey.replace(/^"|"$/g, "") : undefined;
+
 class OpenAIClient {
   static client = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
+    apiKey,
   });
 
   // método estático que retorna configuração para completions (antigo)
   static textCompletion({ prompt }) {
     return {
-      model: "text-davinci-003",   // modelo clássico (hoje depreciado)
+      model: "text-davinci-003",
       prompt: `${prompt}`,
       temperature: 0,
       max_tokens: 3500,
@@ -22,7 +26,7 @@ class OpenAIClient {
   // método estático que já usa chat.completions (atual)
   static async chatCompletion({ prompt }) {
     const response = await OpenAIClient.client.chat.completions.create({
-      model: "gpt-4o-mini", // modelo atual
+      model: "gpt-4o-mini",
       messages: [
         {
           role: "system",
