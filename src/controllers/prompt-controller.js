@@ -6,7 +6,9 @@ module.exports = {
     const inputModel = new InputPrompt(req.body);
     try {
       // usa o método atualizado que retorna o texto da resposta
-      const text = await OpenAIClient.chatCompletion({ prompt: inputModel.prompt });
+      const text = await OpenAIClient.chatCompletion({
+        prompt: inputModel.prompt,
+      });
       return res.status(200).json({
         success: true,
         data: text,
