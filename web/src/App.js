@@ -15,7 +15,23 @@ function App() {
     }])
 
   async function handleSubmit(e){
+      e.preventDefault()
 
+      let response = await makeRequest({prompt: input})
+
+      response = response.data.split('\n').map(line => <p>{line}</p>)
+
+      setChatlog([... chatlog, {
+        user:'me',
+        message: `${input}`
+      },
+      {
+        user:'gpt',
+        message: response
+      }
+      ])
+
+      setInput("")
   }
 
   return (
