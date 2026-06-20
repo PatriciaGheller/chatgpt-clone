@@ -16,7 +16,8 @@ module.exports = {
     } catch (error) {
       return res.status(400).json({
         success: false,
-        error: error.response ? error.response.data : error.message,
+        error: error.response ? error.response.data :
+        "there was an inssue on the server"
       });
     }
   },
