@@ -1,14 +1,9 @@
 import React from "react";
 import './ChatMessage.css'
 import Avatar from "../../assets/avatar";
-// user (user | chatgpt)
-// message - aonde vai estar o prompt
-//{
-//  user: 'gpt'
-//  message: 'crie um nome de artigo'
-//}
 
 export const ChatMessage = ({message}) =>{
+  return(
   <div className={`chat-message ${message.user === 'gpt'} && "chatgpt"`}>
 
   <div className="chat-message-center">
@@ -23,4 +18,5 @@ export const ChatMessage = ({message}) =>{
     </div>
   </div>
   </div>
+)
 }
